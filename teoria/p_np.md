@@ -36,6 +36,8 @@
 - Se A é NP Difícil, então todos os problemas em NP podem ser reduzidos a A
 
 
+## Adendos
+
 ### Definições
 - Resposta sucinta para NÃO = provar que nunca se chegará em uma resposta sim
 - SAT (Problema de satisfatibilidade booliana): "Este problema pergunta se, dada uma fórmula em lógica booleana arbitrária, existe uma atribuição para as variáveis da fórmula que a torne verdadeira."
