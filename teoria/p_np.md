@@ -1,9 +1,12 @@
 # P vs NP
 - [P vs NP](https://ricardomatsumura.medium.com/p-vs-np-c37368838dfb)
 - [NP e NP-Completeza](https://ricardomatsumura.medium.com/np-e-np-completeza-3ca168d5b3a1) - texto ótimo, ler mais de uma vez
+- [NP-Intermediário](https://ricardomatsumura.medium.com/np-intermediário-debcc3883a30)
+- [NP-Difícil](https://ricardomatsumura.medium.com/np-difícil-700e21f18a00)
 - [Vídeo do canal Tem Ciência](https://www.youtube.com/watch?v=O-OLFG0WJpc)
 
 ## P
+- Problemas de decisão que podem ser solucionados(decididos) por uma MTD em tempo polinomial
 - São resolvidos em tempo polinomial, então também são verificáveis em tempo polinomial
 - Os problemas em P possuem ambos certificados sucintos para SIM e para NÃO, mas não se sabe se todo problema que possui ambos certificados é P.
 
@@ -29,12 +32,23 @@
 - "Se um problema pertence a NP-Completo, isso implica que nenhum problema em NP é mais difícil que ele. Isto é, os problemas em NP-Completo são os mais difíceis da classe NP."
 - "Todos problemas NP-Completo tem a mesma complexidade assintótica. Todos são assintoticamente igualmente difíceis. "
 - Ao reduzir polinomialmente um problema que sabemos que é NP-Completo a um novo problema, "Se essa redução for possível estabelecemos que o problema NP-Completo não pode ser mais difícil que o nosso novo problema. Como sabemos também que nenhum problema NP é mais difícil que problemas NP-Completos, concluímos que nosso problema é exatamente tão difícil quanto o NP-Completo: ou seja, ele é também NP-Completo."
-- Problemas: SAT, TSP(Caixeiro viagente), Mochila cheia
+- Problemas: SAT, TSP(Caixeiro viagente)[versão de decisão], Mochila cheia
+
+## NP-Intermediário
+- São problemas mais difíceis do que estão em P mas não estão entre os mais difíceis da classe NP(que seriam os NP-Completos)
+- "sabe-se que se P!=NP, então existe pelo menos um problema na classe NPI. De forma inversa, se NPI for demonstrada vazia, então implica-se que P==NP."
+- "Para um problema pertencer a NPI, este não pode possuir algoritmo eficiente (polinomial em uma MTD) para solucioná-lo e não pode haver redução polinomial de qualquer problema NPC a ele."
+- "Há, porém, problemas candidatos a pertencerem a NPI: são problemas para os quais o melhor algoritmo conhecido é super-polinomial e sub-exponencial"
+- "Dois exemplos de problemas candidatos a NPI são o reconhecimento de isomorfismo de grafos e a fatoração de inteiros."
 
 ## NP-Difícil
 - Ele não necessariamente é verificável em tempo polinomial, ou seja, que esteja em NP
-- Se A é NP Difícil, então todos os problemas em NP podem ser reduzidos a A
-
+- Se A é NP Difícil, então todos os problemas em NP podem ser reduzidos a A 
+- "Como na classe NPC, esta definição implica que os problemas em NP-Difícil (NPD) estabelecem um limite superior para a dificuldade dos problemas na classe NP — isto é, problemas NPD são pelo menos tão difíceis quanto os problemas mais difíceis em NP, exatamente como os problemas NPC. De fato, a classe NPC é a intersecção entre as classes NP e NP-Difícil."
+- "O fato de ser NPD implica que não há algoritmo eficiente para solucionar este problema"
+- "De forma geral, dizer que um problema de otimização é NP-Difícil significa que não é possível garantir que se encontre uma solução ótima para todas instâncias deste problema em tempo polinomial."
+- Ser NP-Difícil é não conseguir gerar uma solução ótima em tempo polinomial
+- Problemas: TSP(Caixeiro viagente)[a versão de otmização, e não esta em NP], problema da parada em MT(saber se a maquina de Turing vai parar ou não), jogos como Pac-Man("Pac-Man ser NP-Difícil significa que jogar de forma ótima, onde se finaliza o jogo percorrendo a menor distância possível, é um problema computacionalmente difícil no caso geral ") e Tron
 
 ## Adendos
 
