@@ -1,0 +1,62 @@
+[
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\core.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\core.dir\\core\\src\\Board.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\core\\src\\Board.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/core/src/Board.cpp",
+  "output": "CMakeFiles/core.dir/core/src/Board.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\core.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\core.dir\\core\\src\\BoardGenerator.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\core\\src\\BoardGenerator.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/core/src/BoardGenerator.cpp",
+  "output": "CMakeFiles/core.dir/core/src/BoardGenerator.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\core.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\core.dir\\core\\src\\DeterministicSolver.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\core\\src\\DeterministicSolver.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/core/src/DeterministicSolver.cpp",
+  "output": "CMakeFiles/core.dir/core/src/DeterministicSolver.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\core.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\core.dir\\core\\src\\FrontierExtractor.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\core\\src\\FrontierExtractor.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/core/src/FrontierExtractor.cpp",
+  "output": "CMakeFiles/core.dir/core/src/FrontierExtractor.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\core.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\core.dir\\core\\src\\MonteCarloSolver.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\core\\src\\MonteCarloSolver.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/core/src/MonteCarloSolver.cpp",
+  "output": "CMakeFiles/core.dir/core/src/MonteCarloSolver.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\core.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\core.dir\\core\\src\\BruteForceSolver.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\core\\src\\BruteForceSolver.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/core/src/BruteForceSolver.cpp",
+  "output": "CMakeFiles/core.dir/core/src/BruteForceSolver.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\core.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\core.dir\\core\\src\\AutoPlayer.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\core\\src\\AutoPlayer.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/core/src/AutoPlayer.cpp",
+  "output": "CMakeFiles/core.dir/core/src/AutoPlayer.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\benchmark.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\benchmark.dir\\benchmark\\main2.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\benchmark\\main2.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/benchmark/main2.cpp",
+  "output": "CMakeFiles/benchmark.dir/benchmark/main2.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tests.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\tests.dir\\tests\\main.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\tests\\main.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/tests/main.cpp",
+  "output": "CMakeFiles/tests.dir/tests/main.cpp.obj"
+},
+{
+  "directory": "C:/rep_vscode/AED3/minesweeper_solver/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\autoplayer.dir\\includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\autoplayer.dir\\tests\\main_autoplayer.cpp.obj -c C:\\rep_vscode\\AED3\\minesweeper_solver\\tests\\main_autoplayer.cpp",
+  "file": "C:/rep_vscode/AED3/minesweeper_solver/tests/main_autoplayer.cpp",
+  "output": "CMakeFiles/autoplayer.dir/tests/main_autoplayer.cpp.obj"
+}
+]

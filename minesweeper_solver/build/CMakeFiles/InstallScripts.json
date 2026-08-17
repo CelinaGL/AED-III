@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/rep_vscode/AED3/minesweeper_solver/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

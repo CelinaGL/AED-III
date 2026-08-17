@@ -1,0 +1,2 @@
+C:\msys64\ucrt64\bin\ar.exe qc libcore.a CMakeFiles/core.dir/core/src/Board.cpp.obj CMakeFiles/core.dir/core/src/BoardGenerator.cpp.obj CMakeFiles/core.dir/core/src/DeterministicSolver.cpp.obj CMakeFiles/core.dir/core/src/FrontierExtractor.cpp.obj CMakeFiles/core.dir/core/src/MonteCarloSolver.cpp.obj CMakeFiles/core.dir/core/src/BruteForceSolver.cpp.obj CMakeFiles/core.dir/core/src/AutoPlayer.cpp.obj
+C:\msys64\ucrt64\bin\ranlib.exe libcore.a

@@ -1,0 +1,116 @@
+- (lucas) Analisei arquivos. key_public, message.en, key_for_rsa_public.en parecem estar em base64 (final '=' indica padding)
+    -- key_for_message.en já parece ser binário.
+
+- (lucas) usei comandos para converter arquivos que pareciam estar codificados em base64 para binário
+    -- comando: base64 -d arq_IN.en > arq_OUT.bin
+    -- decodifiquei message.en, key_public.en, key_for_rsa_public.hash
+
+- (lucas) teoricamente o RSA é lento, e ele é aplicado pra cifrar a senha do algoritmo que cifra a mensagem. Então tem 2 algoritmos
+que cifram coisas sendo utilizados (dá pra inferir isso com base no número e nome dos arquivos).
+
+- (lucas) Assumindo que RSA cifra "key_for_message.en". O primeiro passo é decifrar a chave que cifra a mensagem.
+
+- (lucas) Como o nome da tarefa é AES-RSA, eu to assumindo no fodase que a message.en ta cifrada com o AES kkkkkkkkkk
+
+- (lucas) Então, focando nos arquivos do RSA primeiro: "key_for_rsa_public.hash" e "key_public.en". O primeiro, segundo o enunciado
+é uma chave para acessar a chave pública, e ta protegida por hash.
+
+- (lucas) O primeiro passo é dar um jeito de quebrar essa hash. O que eu sei, é que dependendo do algoritmo que foi utilizado
+a gente tem hashes de tamanho diferente. Assumindo que "key_for_rsa_public.hash" ta mesmo em Base64, precisamos converter pra .bin
+e testar.
+
+- (lucas) usando o comando wc(word count) com flag -c pra contar em bytes, o arquivo "key_for_rsa_public.hash" tem 45 bytes
+e convertido de Base64 pra binário ele tem 32 bytes (wc -c arquivo.bin). Isso dá um aumento de ~40,6% no tamanho do arquivo,
+o esperado era ~33% de binário pra Base64, é um ponto de ATENÇÃO
+
+- (lucas) Como é 32 bytes de tamanho (256 bits), provavelmente o algoritmo de hash usado foi o SHA-256 que produz uma saída
+de 256 bits.
+
+- (lucas) ele nos dá o início da "senha". Como senha e chave são meio que intercambiáveis fica ambíguo, MAS, ele só usa senha pra
+se referer ao "key_for_rsa_public" e nos outros ele usa chave, então provavelmente é aqui que eu tenho que usar aquela dica de senha.
+
+- (lucas) to implementando um bruteforce exaustivo com a tabela ascii normal pra tentar quebrar a hash do professor. Pode ser que de
+errado e eu precise fazer isso pra tabela ascii estendida. A noraml tem 128 caracteres (0 a 128) e mapeiam diretamente pra 1 inteiro.
+
+- (celina) utizei a ferramenta hashcat como teste para tentar quebrar a hash, pra isso converti o "key_for_rsa_public.hash" pra Base64 e 
+dps pra hexadecimal(hexa_key_for_rsa_public)
+    -- tentei o bruteforce(flag -a 3) com máscara de minusculas pra até 8 caracteres(8 além do "jd" q a gente já tem)(flag 
+    "jd?l?l?l?l?l?l?l?l") e com otimização de hardware(flags -O -w 4 [4 de modo insano meu pc mais parecia uma turbina])
+    -- a partir de 9 o tempo de execução aumentou bastante, com 10(12 com o "jd") caracteres a estimativa no meu pc foi de 9h mais ou menos
+    -- o algritmo de hash usado foi o SHA2-256(flag -m 1400)
+    -- para +10 caracteres e apenas letras minusculas: hashcat -a 3 -m 1400 hexa_key_for_rsa_public.hash "jd?l?l?l?l?l?l?l?l?l?l" -O -w 4
+
+- (lucas) tabela ascii inteira é impossivel testar, limitei a profundidade à 8 caracteres de senha e não vai achar, tb demorou mt
+pra rodar. Finalizei processo
+
+- (lucas) tentei limitar a busca à 12 de profundidade testando só senhas com caracteres minúsculos e números. Vou deixar rodando 
++- 1 hora. Não deu em nada, provavelmente inviavel rodar desde o início.
+
+- (lucas) IDEIA: vou rodar pra tamanhos menores e executáveis, em busca de um limite inferior, depois vou inverter a lógica do
+algoritmo, ao invés de testar as senhas de menor tamanho primeiro, ele vai e começa testando as de maior (c/ um limite superior) e
+vai descendo até um limite inferior. 
+
+- (lucas) consegui quebrar até o tamanho 9 e não achei a senha (usando minúsculos e números)
+
+- (lucas) IDEIA: usar threads pra paralelizar o processo como se fosse uma busca bidirecional. 1 inicia no limite 8 e sobe até o
+limite superior, a outra inicia no limite superior e desce até o inferior, se alguma bater na senha para o processo. Dá pra aumentar
+o número de threads dividindo por 2, por exemplo, o inferior até o meio, do meio ao inferiro, do meio ao superior e do superior ao meio.
+
+- (lucas) as minhas ideias são boas, mas seria implementar o hashcat na mão. Me rendi a ele, testando com o comando indicado pela celina para 
+12 caracteres (jd + 10) já tá dando uma estimativa de 20 horas pra quebrar o hash considerando APENAS letras minúsuculas.
+
+- (celina) "key_public.bin" testes com várias criptografias simétricas no openssl pra encontrar a chave pública do rsa 
+    -- openssl aes-128-cfb -nosalt -d -in key_public.bin -out key_public_decAES128CFB.txt -pass pass:jdeycpaovnqu
+    -- openssl aes-256-cbc -nosalt -d -in key_public.bin -out key_public_decAES256CBC.txt -pass pass:jdeycpaovnqu
+    -- openssl aes-256-ecb -nosalt -d -in key_public.bin -out key_public_decAES256ECB.txt -pass pass:jdeycpaovnqu
+    -- openssl des-ede-cfb -nosalt -d -in key_public.bin -out key_public_decDESEDECFB.txt -pass pass:jdeycpaovnqu
+    -- openssl des-ede-ofb -nosalt -d -in key_public.bin -out key_public_decDESEDEOFB.txt -pass pass:jdeycpaovnqu
+    -- openssl aes-256-cfb -nosalt -d -in key_public.bin -out key_public_decAES256CFB.txt -pass pass:jdeycpaovnqu
+    -- Com este deu certo -> openssl aes-256-ofb -nosalt -d -in key_public.bin -out key_public_decAES256OFB.txt -pass pass:jdeycpaovnqu
+    -- troquei o arquivo pra .pem pra diferenciar
+
+- (celina) testei com mais antes de achar a correta mas n cataloguei, praticamente fiz com todas do AES e a maioria do DES q mostrava no 
+openssl -h, o comando q deu certo(aes-256-ofb) eu tive q ir pesquisar pq n mostrava 
+
+- (celina) consegui extrair N, o openssl tbm tem comando para isso
+    -- openssl pkey -pubin -in key_public_decAES256OFB.pem -text -noout
+    -- O comando extrai o par e(Exponent) e N(Modulus), coloquei a saída em "N.txt"
+
+- (lucas) Joguei o N(1674433695830467639706494459561841890558060714439453245436568893498686100907796170543898203456285574571510846310731) 
+extraido no factordb.com, ele me entregou que o N tinha 5 fatores, ou sejam tem algo
+de errado com o nosso N. Já que pelo teorema fundamental da aritmetica o numero N só tem uma combinacao de
+fatores primos no mundo q resulta nele. Como o site pode ta simplesmente errado talvez eu precise tentar fatorar via algoritmo.
+
+- (lucas) ta, eu refiz os passos pra tirar a criptografia "AES256OFB" de cima do "key_public.en". 
+Pelo que eu entendi, o openssl só tira a criptografia q tava em cima de um texto, esse texto 
+ainda ta codificado em base64 pelo formato e caracteres utilizado (alfabeto, numeros e + e /).
+
+- (lucas) rodei o comando do openssl, igual o que a celina rodou antes só com caminhos do arquivo diferente (pro arquivo que
+eu decodifiquei refazendo o caminho dela pra testar). Consegui a mesma saida:  tamanho de public key igual e N em hexadecimal
+iguais. provavelmente algum erro de conversao do hexadecimal.
+
+- (lucas) O N hexadecimal vem num formato específico, padrão em vários algoritmos/softwares de criptografia e
+o openssl utiliza ele (ASN.1), o 00 não faz parte do número hexadecimal, é apenas padding do formato.
+
+- (lucas) Rodei um casting em python de hexa pra int com o número hexadecimal. 
+python3 -c "print(int('b165a7cd36c8892fdff40b5a1d000ccca73e854c53fab80238d0e548ac9f361ab3fede507d12fb10b2f7840ad461c94b', 16))"
+Recebi N = 27303911352989470248928971431479088222170782447991120665670669784387553995747545547406419959802490512332817447373131
+é um N diferente do que a gente tinha conseguido antes.
+
+- (lucas) O N não tava no factordb.com, vou usar o sagemath(yafu e msieve n tinham no arch, tavam dando conflito de versao)
+pra fatorar o número, ele implementa algoritmos matemáticos como Self-Initializing Quadratic Sieve (SIQS) e Elliptic curve method (ECM) pra otimizar a fatoracao.
+Como visto na tentativa de implementar um bruteforce trivial, rodar um programa trivial levaria mais tempo do que temos disponível, 
+e implementar essas otimizacoes na mao é excessivamente complexo e nao é o objetivo do trabalho.
+
+- (lucas) deixei o sagemath rodando por mais de 3 horas, ele imprimiu 2 txts de erro vazios. Nao deu certo, nao era pra ter demorado
+tanto tempo assim. Vou tentar rodar o cado-nfs. Ficou rodando por 40 min, encontramos o p e o q. Celina vai assumir e quebrar a mensagem
+
+- (celina) com o p e o q a gente consegue a chave privada do RSA, descrobri uma biblioteca em python q faz isso, a PyCryptodome 
+ela n é difícil de usar, o código ta em "private_key_rsa.py" e a chave privada em "key_private.pem"
+o cógigo é bem simples, primeiro calcula o ϕ, dps usa uma função da biblioteca pra calcular o d e junta tudo(n,e,d,p,q) formando a chave privada
+
+- (celina) usando openssl pra descriptografar a key_for_message.en 
+    -- openssl pkeyutl -decrypt -inkey key_private.pem -in key_for_message.en -out key_message.txt
+
+- (celina) aparentemente deu outra chave AES, vou testar na mensagem com o msm comando q tinha usado pra key_public pra ver se é a msm coisa
+    -- openssl aes-256-ofb -nosalt -d -in message.bin -out message.txt -pass pass:xosesxojipdj

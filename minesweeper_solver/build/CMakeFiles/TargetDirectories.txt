@@ -1,0 +1,6 @@
+C:/rep_vscode/AED3/minesweeper_solver/build/CMakeFiles/core.dir
+C:/rep_vscode/AED3/minesweeper_solver/build/CMakeFiles/benchmark.dir
+C:/rep_vscode/AED3/minesweeper_solver/build/CMakeFiles/tests.dir
+C:/rep_vscode/AED3/minesweeper_solver/build/CMakeFiles/autoplayer.dir
+C:/rep_vscode/AED3/minesweeper_solver/build/CMakeFiles/edit_cache.dir
+C:/rep_vscode/AED3/minesweeper_solver/build/CMakeFiles/rebuild_cache.dir
