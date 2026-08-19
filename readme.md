@@ -6,3 +6,5 @@
 - [P vs NP](./teoria/p_np.md)
 - [EXPTIME, PSPACE, EXPSPACE](./teoria/exptime_pspace_exspace.md)
 - [Algoritmos Aproximativos](./teoria/aproximativos.md)
+- [Algoritmos Probabilisticos](./teoria/probabilisticos.md)
+- [Criptografia](./teoria/criptogafia.md)
